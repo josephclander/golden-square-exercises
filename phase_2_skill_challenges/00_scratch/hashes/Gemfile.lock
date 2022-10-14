@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    listen (0.1.0)
+    rubymon (0.1.1)
+      listen (~> 0.1.0)
+
+PLATFORMS
+  x86_64-darwin-21
+
+DEPENDENCIES
+  rubymon (~> 0.1.1)
+
+BUNDLED WITH
+   2.2.3
