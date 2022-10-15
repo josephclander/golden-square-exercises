@@ -2,7 +2,7 @@
 
 These are the challenges that I am completing as part of the 'Golden Square' exercises.
 
-## The objectives of these first 2 weeks are:
+## Objectives
 
 - Learn to test-drive programs with multiple classes.
 - Learn to break programs up into classes.
