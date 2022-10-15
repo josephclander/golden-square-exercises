@@ -9,8 +9,7 @@ class TaskList
 
   # task is a string
   def add(task)
-    # return 'must be a string' if task isn't a string
-    # otherwise, no return value
+    # no return value
     @task_list << task
   end
 
@@ -24,7 +23,9 @@ class TaskList
   # task_number is a positive integer from the list
   def complete(task_number)
     # if the task_number doesn't exist, return "0 tasks"
-    return '0 tasks' unless task_number.is_a?(Integer) && @task_list[task_number - 1]
+    raise 'No such task' unless task_number.is_a?(Integer) && @task_list[task_number - 1]
+
+    # return '0 tasks' unless task_number.is_a?(Integer) && @task_list[task_number - 1]
 
     # removes task from list
     # returns the new task_list

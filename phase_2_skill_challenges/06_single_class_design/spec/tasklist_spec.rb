@@ -46,12 +46,14 @@ describe TaskList do
 
     it 'returns "no such task" if no such task' do
       @tasks.add('Wash clothes')
-      expect(@tasks.complete(2)).to eq('0 tasks')
+      # expect(@tasks.complete(2)).to eq('0 tasks')
+      raise { expect(@tasks.complete(2)) }.to raise_error 'No such task'
     end
 
-    it 'returns "no such task" if no such task' do
+    it 'returns "no such task" if not an integer' do
       @tasks.add('Wash clothes')
-      expect(@tasks.complete('1')).to eq('0 tasks')
+      # expect(@tasks.complete('1')).to eq('0 tasks')
+      expect { @tasks.complete('1') }.to raise_error 'No such task'
     end
   end
 end
