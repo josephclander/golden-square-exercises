@@ -2,21 +2,17 @@
 
 # File: lib/diary_entry.rb
 class DiaryEntry
+  attr_reader :title, :contents
+
   # title, contents are strings
   def initialize(title, contents)
-    # ...
-  end
-
-  def title
-    # Returns the title as a string
-  end
-
-  def contents
-    # Returns the contents as a string
+    @title = title
+    @contents = contents
   end
 
   def count_words
     # Returns the number of words in the contents as an integer
+    @contents.split.length
   end
 
   # wpm is an integer representing
@@ -24,6 +20,9 @@ class DiaryEntry
     # the number of words the user can read per minute
     # Returns an integer representing an estimate of the reading time in minutes
     # for the contents at the given wpm.
+    raise 'wpm must be positive' unless wpm.positive?
+
+    count_words / wpm
   end
 
   # `wpm` is an integer representing the number
