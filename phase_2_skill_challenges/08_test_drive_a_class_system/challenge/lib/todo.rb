@@ -7,7 +7,9 @@ class Todo
     @task = { note: task, complete: false }
   end
 
-  attr_reader :task
+  def task
+    @task[:note]
+  end
 
   def mark_done!
     # Marks the todo as done

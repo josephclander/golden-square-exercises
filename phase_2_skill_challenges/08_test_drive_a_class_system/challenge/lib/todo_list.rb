@@ -17,7 +17,6 @@ class TodoList
   def incomplete
     # Returns all non-done todos›
     @todo_list.reject(&:done?)
-    todo[:complete]
   end
 
   def complete
