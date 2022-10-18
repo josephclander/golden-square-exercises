@@ -18,5 +18,6 @@ class Todo
   def done?
     # Returns true if the task is done
     # Otherwise, false
+    @task[:complete]
   end
 end

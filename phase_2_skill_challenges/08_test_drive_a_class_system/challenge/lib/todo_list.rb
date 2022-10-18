@@ -16,13 +16,12 @@ class TodoList
 
   def incomplete
     # Returns all non-done todos
-    # [{ task: 'a task to do', complete: false }]
-    @todo_list.select { |todo| todo.task[:complete] == false }
+    @todo_list.reject(&:done?)
   end
 
   def complete
     # Returns all complete todos
-    @todo_list.select { |todo| todo.task[:complete] == true }
+    @todo_list.select(&:done?)
   end
 
   def give_up!
