@@ -4,22 +4,21 @@
 class Todo
   # task is a string
   def initialize(task)
-    @task = { note: task, complete: false }
+    @task = task
+    @complete = false
   end
 
-  def task
-    @task[:note]
-  end
+  attr_reader :task
 
   def mark_done!
     # Marks the todo as done
     # Returns nothing
-    @task[:complete] = true
+    @complete = true
   end
 
   def done?
     # Returns true if the task is done
     # Otherwise, false
-    @task[:complete]
+    @complete
   end
 end
