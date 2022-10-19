@@ -5,6 +5,10 @@ require 'net/http'
 
 # cat facts
 class CatFacts
+  def initialize(requester)
+    @requester = requester
+  end
+
   def provide
     "Cat fact: #{get_cat_fact['fact']}"
   end
@@ -12,7 +16,7 @@ class CatFacts
   private
 
   def get_cat_fact
-    text_response = Net::HTTP.get(URI('https://catfact.ninja/fact'))
+    text_response = @requester.get(URI('https://catfact.ninja/fact'))
     JSON.parse(text_response)
   end
 end
