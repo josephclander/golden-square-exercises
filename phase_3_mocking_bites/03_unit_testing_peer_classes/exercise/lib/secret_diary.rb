@@ -12,7 +12,7 @@ class SecretDiary
   # Returns the diary's contents if the diary is unlocked
   # The diary starts off locked
   def read
-    return 'Go away!' if @locked
+    raise 'Go away!' if @locked
 
     @diary.read
   end
