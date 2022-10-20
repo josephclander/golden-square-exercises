@@ -22,7 +22,7 @@ class InteractiveCalculator
   def get_number
     response = @io.gets
     # strings that look like numbers can be converted
-    return response.to_i if response.to_i.to_s == response.to_s
+    return response.to_i if response.to_i.to_s == response
 
     raise 'Must input a number'
   end
@@ -33,9 +33,9 @@ describe InteractiveCalculator do
     terminal = double :terminal
     expect(terminal).to receive(:puts).with('Hello. I will subtract two numbers.').ordered
     expect(terminal).to receive(:puts).with('Please enter a number').ordered
-    expect(terminal).to receive(:gets).and_return(4).ordered
+    expect(terminal).to receive(:gets).and_return("4").ordered
     expect(terminal).to receive(:puts).with('Please enter another number').ordered
-    expect(terminal).to receive(:gets).and_return(3).ordered
+    expect(terminal).to receive(:gets).and_return("3").ordered
     expect(terminal).to receive(:puts).with('Here is your result:').ordered
     expect(terminal).to receive(:puts).with('4 - 3 = 1').ordered
 
@@ -62,3 +62,4 @@ end
 ###############
 
 # .ordered ensures the calls are received in the order you put them in
+# something entered in the command line will always be a string
