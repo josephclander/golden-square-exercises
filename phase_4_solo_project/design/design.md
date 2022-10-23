@@ -20,7 +20,7 @@ class Order
   end
 
   def basket
-    # shows the basket
+    # returns the basket (as a hash)
   end
 
   def add(item)
@@ -36,7 +36,7 @@ class Menu
     # {'meal1': 4.00, 'meal2': 4.50, 'meal3': 5.00}
   end
 
-  def menu
+  def list
     # returns the full menu
   end
 
@@ -62,13 +62,34 @@ end
 ## Integration Testing
 
 ```ruby
-# 1. add 2 separate items to the basket and checkout
+# 1. add 1 item to the basket and checkout
+menu = Menu.new
+order = Order.new
+order.add('meal3')
+checkout = Checkout.new(menu, order)
+checkout.receipt # => "'meal3': 1, total: £5.00"
+
+# 2. add 2 separate items to the basket and checkout
 menu = Menu.new
 order = Order.new
 order.add('meal1')
 order.add('meal2')
 checkout = Checkout.new(menu, order)
-checkout.receipt # => 
+checkout.receipt # => "'meal1': 1, 'meal2': 1, total: £8.50"
+
+# 3. add 2 of the same items to the basket and checkout
+menu = Menu.new
+order = Order.new
+order.add('meal1')
+order.add('meal1')
+checkout = Checkout.new(menu, order)
+checkout.receipt # => "'meal1': 2, total: £8.00"
+
+# 4. order nothing and checkout
+menu = Menu.new
+order = Order.new
+checkout = Checkout.new(menu, order)
+checkout.receipt # => throw an error 'You haven't selected any items'
 
 ```
 
@@ -79,7 +100,14 @@ checkout.receipt # =>
 ### Order
 ```ruby
 
+# 1. constructs
+order = Order.new
+order.basket # => {}
 
+# 2. add an item
+order = Order.new
+order.add('menu1')
+order.basket # => {'menu1': 1}
 
 
 ```
@@ -88,12 +116,14 @@ checkout.receipt # =>
 ```ruby
 # 1. view the menu
 menu = Menu.new
-menu.list
+menu.list # => {'meal1': 4.00, 'meal2': 4.50, 'meal3': 5.00}
 
-
+# 2. find cost of an item
+menu = Menu.new
+menu.cost('meal1') # => 4.00
 
 ```
-### Checkout
+### Checkout (will need doubles)
 ```ruby
 
 
