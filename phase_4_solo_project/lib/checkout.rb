@@ -13,6 +13,8 @@ class Checkout
   def receipt
     raise "You haven't selected any items" if @order.basket.empty?
 
+    raise "At least one of your items doesn't exist" unless valid?
+
     output = ''
     @order.basket.each_pair { |item, freq| output << "#{item}: #{freq}, " }
     output << "total: £#{total}"
@@ -20,11 +22,16 @@ class Checkout
 
   private
 
+  def valid?
+    @order.basket.each_key do |item|
+      return false unless @menu.list[item]
+    end
+    true
+  end
+
   def total
     total = 0
     @order.basket.each_pair do |item, freq|
-      raise "At least one of your items doesn't exist" unless @menu.list[item]
-
       total += freq * @menu.list[item]
     end
     format '%.2f', total
