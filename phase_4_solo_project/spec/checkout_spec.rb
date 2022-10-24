@@ -3,7 +3,7 @@ require 'checkout'
 # require 'order'
 
 describe Checkout do
-  context 'received menu and basket for 1 item' do
+  context '#receipt received menu and basket for 1 item' do
     it 'returns a receipt for that order' do
       menu = double(:menu, list: { 'meal1': 4.00, 'meal2': 4.50, 'meal3': 5.00 })
       order = double(:order, basket: { 'meal3': 1 })
@@ -12,7 +12,7 @@ describe Checkout do
     end
   end
 
-  context 'received menu and basket for 2 separate items' do
+  context '#receipt received menu and basket for 2 separate items' do
     it 'returns a receipt for that order' do
       menu = double(:menu, list: { 'meal1': 4.00, 'meal2': 4.50, 'meal3': 5.00 })
       order = double(:order, basket: { 'meal1': 1, 'meal2': 1 })
@@ -21,7 +21,7 @@ describe Checkout do
     end
   end
 
-  context 'received menu and basket for 2 of the same item' do
+  context '#receipt received menu and basket for 2 of the same item' do
     it 'returns a receipt for that order' do
       menu = double(:menu, list: { 'meal1': 4.00, 'meal2': 4.50, 'meal3': 5.00 })
       order = double(:order, basket: { 'meal1': 2 })
@@ -30,7 +30,7 @@ describe Checkout do
     end
   end
 
-  context 'received menu and basket with no items' do
+  context '#receipt received menu and basket with no items' do
     it 'returns an error' do
       menu = double(:menu, list: { 'meal1': 4.00, 'meal2': 4.50, 'meal3': 5.00 })
       order = double(:order, basket: {})
@@ -39,7 +39,7 @@ describe Checkout do
     end
   end
 
-  context 'received menu and basket with at least one illegal item' do
+  context '#receipt received menu and basket with at least one illegal item' do
     it 'returns an error' do
       menu = double(:menu, list: { 'meal1': 4.00, 'meal2': 4.50, 'meal3': 5.00 })
       order = double(:order, basket: { 'NOT_REAL': 1 })

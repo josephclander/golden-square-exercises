@@ -20,14 +20,14 @@ class Checkout
     output << "total: £#{total}"
   end
 
-  private
-
   def valid?
     @order.basket.each_key do |item|
       return false unless @menu.list[item]
     end
     true
   end
+
+  private
 
   def total
     total = 0
